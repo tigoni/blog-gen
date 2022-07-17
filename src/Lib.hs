@@ -1,5 +1,10 @@
 module Lib  where
 
 
-wrapHtml :: String -> String
-wrapHtml content = "<html><body>" <> content <> "</body></html>"
+body_ :: String -> String 
+body_ content = "<body>" <> content <> "</body>"
+
+html_ :: String -> String
+html_ body = "<html>" <> body <> "</html>"
+
+
