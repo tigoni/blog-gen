@@ -1,4 +1,4 @@
-module Lib  where
+module HTMLPrinter where
 
 
 title_ String -> String
