@@ -1,7 +1,7 @@
 module Main where
 
-import Lib
+import HTMLPrinter 
 
 main :: IO ()
-main = putStrLn  $ html_ $ body_ "First HTML page!"
+main = putStrLn  $ mkHtml "First HTML page!" "This page contains the first blog post."
 
