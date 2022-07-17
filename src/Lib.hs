@@ -1,6 +1,5 @@
-module Lib
-    ( someFunc
-    ) where
+module Lib  where
 
-someFunc :: IO ()
-someFunc = putStrLn "<html><body>Hello World!</body></html>"
+
+wrapHtml :: String -> String
+wrapHtml content = "<html><body>" <> content <> "</body></html>"
