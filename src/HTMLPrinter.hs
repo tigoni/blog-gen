@@ -12,11 +12,17 @@ title_ title = "<title>" <> title <> "</title>"
 
 --use partial application for function exprr
 body_ :: String -> String 
-body_ = el_ "body"
+body_ = element_ "body"
 
 html_ :: String -> String
-html_ = el_ "html"
+html_ = element_ "html"
 
 --utility function to add specified tag to content
-el_ tag content = 
+element_ tag content = 
     "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
+
+--add paragraph tag
+p_ = element_ "p"
+
+h1_ = element_ "h1"
+
