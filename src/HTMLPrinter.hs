@@ -10,10 +10,13 @@ head_ head = "<head>" <> head <> "</head>"
 title_ :: String -> String
 title_ title = "<title>" <> title <> "</title>"
 
+--use partial application for function exprr
 body_ :: String -> String 
-body_ body = "<body>" <> body <> "</body>"
+body_ = el_ "body"
 
 html_ :: String -> String
-html_ page = "<html>" <> page <> "</html>"
+html_ = el_ "html"
 
-
+--utility function to add specified tag to content
+el_ tag content = 
+    "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
