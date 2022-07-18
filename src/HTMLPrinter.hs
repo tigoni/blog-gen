@@ -22,7 +22,9 @@ element_ tag content =
     "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
 
 --add paragraph tag
+p_ :: String -> String
 p_ = element_ "p"
 
+h1 :: String -> String
 h1_ = element_ "h1"
 
