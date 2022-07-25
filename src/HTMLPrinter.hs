@@ -25,6 +25,6 @@ element_ tag content =
 p_ :: String -> String
 p_ = element_ "p"
 
-h1 :: String -> String
+h1_ :: String -> String
 h1_ = element_ "h1"
 

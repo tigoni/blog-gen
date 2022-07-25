@@ -4,5 +4,5 @@ import HTMLPrinter
 
 main :: IO ()
 main = 
-  putStrLn  $ mkHtml "First HTML page!" "This page contains the first blog post."
+  putStrLn  $ mkHtml "Static Blog Test" (h1_ "The First Blog Post" <>  p_ "This page contains the first blog post.")
 
