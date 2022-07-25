@@ -2,9 +2,9 @@ name:                blog-gen
 version:             0.1.0.0
 github:              "githubuser/blog-gen"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2022 Author name here"
+author:              "Kelly N. Muhindi"
+maintainer:          "kmuhindi@protonmai.ch"
+copyright:           "2022 Kelly Muhindi"
 
 extra-source-files:
 - README.md
