@@ -1,30 +1,47 @@
 module HTMLPrinter where
 
+newtype Tag = Tag String
+newtype Html = Html String
 
-mkHtml :: String -> String -> String
-mkHtml title content = html_ $ head_ (title_ title) <> body_ content
+type Title = String
+
+html_ :: Title -> Tag -> Html 
+html_ title content = Html ( element_ "html" (element_ "head" (element_ "title" title) <> element_ "body" (getTagString content)))
 
 head_ :: String -> String
-head_ head = "<head>" <> head <> "</head>"
+head_ headContent = "<head>" <> headContent <> "</head>"
 
 title_ :: String -> String
 title_ title = "<title>" <> title <> "</title>"
+
 
 --use partial application for function exprr
 body_ :: String -> String 
 body_ = element_ "body"
 
-html_ :: String -> String
-html_ = element_ "html"
+--add paragraph tag
+p_ :: String -> Tag
+p_ = Tag . element_ "p"
+
+--wrap content in header tag
+h1_ :: String -> Tag 
+h1_ = Tag . element_ "h1"
+
 
 --utility function to add specified tag to content
+element_ :: String -> String -> String
 element_ tag content = 
     "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
 
---add paragraph tag
-p_ :: String -> String
-p_ = element_ "p"
+append_ :: Tag -> Tag -> Tag
+append_ tagStr tagStr' = Tag (getTagString tagStr <> getTagString tagStr')
 
-h1_ :: String -> String
-h1_ = element_ "h1"
+render :: Html -> String
+render html = 
+    case html of 
+        Html str -> str
 
+getTagString :: Tag -> String
+getTagString string = 
+    case string of 
+        Tag str -> str
