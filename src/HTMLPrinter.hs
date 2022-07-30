@@ -15,15 +15,15 @@ newtype Tag = Tag String
 type Title = String
 
 html_ :: Title -> Tag -> Html 
-html_ title content = Html ( element_ "html" (element_ "head" (element_ "title" title) <> element_ "body" (getTagString content)))
+html_ title content = Html ( element_ "html" (element_ "head" (element_ "title" $ escape title) <> element_ "body" (getTagString  content)))
 
 --add paragraph tag
 p_ :: String -> Tag
-p_ = Tag . element_ "p"
+p_ = Tag . element_ "p" . escape
 
 --wrap content in header tag
 h1_ :: String -> Tag 
-h1_ = Tag . element_ "h1"
+h1_ = Tag . element_ "h1" . escape
 
 append_ :: Tag -> Tag -> Tag
 append_ tagStr tagStr' = Tag (getTagString tagStr <> getTagString tagStr')
@@ -44,3 +44,20 @@ getTagString :: Tag -> String
 getTagString string = 
     case string of 
         Tag str -> str
+
+
+--handle user input that may contain invalid characters that will conflict with HTML tags 
+
+escape :: String -> String
+escape = 
+    let 
+        escapeChar c = 
+            case c of 
+                '<' -> "&lt;"
+                '>' -> "&gt;"
+                '&' -> "&amp;"
+                '"' -> "&quot"
+                '\''-> "&#39;"
+                _   -> [c]
+        in 
+            concatMap escapeChar
