@@ -17,29 +17,35 @@ type Title = String
 html_ :: Title -> Tag -> Html 
 html_ title content = Html ( element_ "html" (element_ "head" (element_ "title" $ escape title) <> element_ "body" (getTagString  content)))
 
---add paragraph tag
+--wrap a string inside a paragraph tag `<p>str</p>`
 p_ :: String -> Tag
 p_ = Tag . element_ "p" . escape
 
---wrap content in header tag
+--wrap a string inside a header tag `<h1>str</h1>`
 h1_ :: String -> Tag 
 h1_ = Tag . element_ "h1" . escape
 
+-- ul_ :: [Tag] -> Tag
+-- ul tagList = tagList
+
+
+--concatenate the strings of two Tags
 append_ :: Tag -> Tag -> Tag
 append_ tagStr tagStr' = Tag (getTagString tagStr <> getTagString tagStr')
 
+--print/return the contents of a Tag
 render :: Html -> String
 render html = 
     case html of 
         Html str -> str
 
 
---internal utility functions used by this lib
-
+--take a html tag and some content and wrap the content in the tag
 element_ :: String -> String -> String
 element_ tag content = 
     "<" <> tag <> ">" <> content <> "</" <> tag <> ">"
 
+--Get the string wrapped by a tag
 getTagString :: Tag -> String
 getTagString string = 
     case string of 
