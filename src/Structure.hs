@@ -55,6 +55,17 @@ fourthTest =
       "Otherwise, it will only produce the .o and .hi files."
   ]
 
+
+--utility functions on recursion refresher
 replicate' :: Int -> Int -> [Int]
 replicate' x n | n <= 0  = [] 
                | otherwise = x : replicate' x (n - 1)
+
+-- mutual recursion (even' calls odd' which then calls even' ...until N - 1 == 0)
+even' :: Int -> Bool
+even' x | x == 0    = True
+        | otherwise = odd' (x - 1)
+
+odd' :: Int -> Bool
+odd' y | y == 0    = False
+       | otherwise = even' (y - 1)
