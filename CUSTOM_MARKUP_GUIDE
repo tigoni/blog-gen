@@ -1,0 +1,32 @@
+# This is a guide to a custom markup language that is parsed to produce HTML pages with content.
+
+# Features:
+Headings: Prefix by a number of * characters.
+Paragraphs: A group of lines withour empty lines in between
+Un-ordered lists: A group of lines prefixed with - 
+Ordered list: A group of lists prefixed with #
+Code blocks: a group of lines prefixed with >
+
+---
+
+Sample Text:
+
+* What is Haskell?
+Haskell is a general purpose programming language which provides a functional approach to programs, uses 
+lazy evaluation on expressions and is strongly typed.
+
+* FEatures:
+- Functional
+- Lazy Evaluation
+- Strong Typing
+
+* Examples of a Haskell function:
+
+> add :: Integer -> Integer -> Integer
+> add a b = a + b
+
+Compiling the above in a file named Add.hs produces:
+# add.hi
+# add.o
+# add 
+
