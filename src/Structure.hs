@@ -62,10 +62,10 @@ replicate' x n | n <= 0  = []
                | otherwise = x : replicate' x (n - 1)
 
 -- mutual recursion (even' calls odd' which then calls even' ...until N - 1 == 0)
-even' :: Int -> Bool
+even' :: Natural -> Bool
 even' x | x == 0    = True
         | otherwise = odd' (x - 1)
 
-odd' :: Int -> Bool
+odd' :: Natural -> Bool
 odd' y | y == 0    = False
        | otherwise = even' (y - 1)
