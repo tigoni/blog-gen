@@ -5,7 +5,6 @@ module HTMLPrinter
     html_,
     p_,
     h1_,
-    append_,
     render,
   )
 where
@@ -29,10 +28,6 @@ h1_ = Tag . element_ "h1" . escape
 
 -- ul_ :: [Tag] -> Tag
 -- ul tagList = tagList
-
--- concatenate the strings of two Tags
-append_ :: Tag -> Tag -> Tag
-append_ tagStr tagStr' = Tag (getTagString tagStr <> getTagString tagStr')
 
 -- print/return the contents of a Tag
 render :: Html -> String
@@ -64,3 +59,9 @@ escape =
           '\'' -> "&#39;"
           _ -> [c]
    in concatMap escapeChar
+
+
+instance Semigroup Tag where
+  (<>) elem1 elem2 = 
+    Tag (getTagString elem1 <> getTagString elem2)
+

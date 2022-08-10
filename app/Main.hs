@@ -6,4 +6,4 @@ main :: IO ()
 main = putStrLn  (render html)
   
 html :: Html
-html = html_ "Static Blog Test" (append_ (h1_ "Heading")(append_ (p_ "paragraph #1")(p_ "paragraph #2")))
+html = html_ "Static Blog Test" ((h1_ "Heading" <> p_ "paragraph #1") <> p_ "paragraph #2")

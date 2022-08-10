@@ -56,9 +56,6 @@ trim = unwords . words
 
 
 
-
-
-
 -- Tests on strings
 
 firstTest :: Document
