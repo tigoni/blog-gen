@@ -6,10 +6,10 @@ cabal-version: 1.12
 
 name:           blog-gen
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/blog-gen#readme>
-homepage:       https://github.com/githubuser/blog-gen#readme
-bug-reports:    https://github.com/githubuser/blog-gen/issues
-author:         Kelly Muhindi 
+description:    Please see the README on GitHub at <https://github.com/tigoni/blog-gen#readme>
+homepage:       https://github.com/tigoni/blog-gen#readme
+bug-reports:    https://github.com/tigoni/blog-gen/issues
+author:         Kelly N. Muhindi
 maintainer:     kmuhindi@protonmail.ch
 copyright:      2022 Kelly Muhindi
 license:        BSD3
@@ -21,11 +21,13 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/blog-gen
+  location: https://github.com/tigoni/blog-gen
 
 library
   exposed-modules:
       HTMLPrinter
+      PatternMatchTests
+      Structure
   other-modules:
       Paths_blog_gen
   hs-source-dirs:
