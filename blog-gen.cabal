@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       HTMLPrinter
+      PatternMatchTests
       Structure
   other-modules:
       Paths_blog_gen
