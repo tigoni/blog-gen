@@ -1,6 +1,7 @@
 module Structure where
 
 import Numeric.Natural
+import Data.Maybe
 
 type Document =
   [Structure]
@@ -17,22 +18,25 @@ data Structure
 
 --
 parse :: String -> Document
-parse = parseLines [] . lines 
+parse = parseLines Nothing . lines 
 
 --group together paragraphs into a structure
-parseLines :: [String] -> [String] -> Document
-parseLines currentParagraph text = 
-  let 
-    paragraph = Paragraph (unlines (reverse currentParagraph))
-  in
+parseLines :: Maybe Structure -> [String] -> Document
+parseLines context text = 
     case text of
-      [] -> [paragraph]
+      [] -> maybeToList context
       currentLine : rest -> 
-        if trim currentLine == ""
+        let line = trim currentLine
+        in
+          if trim line == ""
           then 
-            paragraph : parseLines [] rest
+            maybe id (:) context (parseLines Nothing rest)
           else
-            parseLines (currentLine: currentParagraph) rest
+            case context of 
+              Just (Paragraph paragraph) -> 
+                parseLines (Just (Paragraph (unwords [paragraph, line]))) rest
+              _ -> maybe id (:) context (parseLines (Just (Paragraph line)) rest)
+
 
 trim :: String -> String
 trim = unwords . words
