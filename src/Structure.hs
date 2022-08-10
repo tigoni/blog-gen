@@ -12,7 +12,7 @@ data Structure
   | UnOrderedList [String]
   | OrderedList [String]
   | CodeBlock [String]
-  deriving (Show)
+  deriving (Show, Eq)
 
 --
 parse :: String -> Document
