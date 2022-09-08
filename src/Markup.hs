@@ -1,4 +1,4 @@
-module Structure where
+module  Markup where
 
 import Numeric.Natural
 import Data.Maybe
