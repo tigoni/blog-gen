@@ -5,6 +5,10 @@ module HTMLPrinter
     html_,
     p_,
     h1_,
+    ul_,
+    ol_,
+    code_,
+    append_,
     render,
   )
 where
@@ -26,8 +30,23 @@ p_ = Tag . element_ "p" . escape
 h1_ :: String -> Tag
 h1_ = Tag . element_ "h1" . escape
 
--- ul_ :: [Tag] -> Tag
--- ul tagList = tagList
+-- wrap un-ordered list items inside <ul><li></li></ul> 
+ul_ :: [Tag] -> Tag
+ul_ =
+  Tag . element_ "ul" . concatMap (element_ "li" . getTagString)
+
+-- wrap ordered list items inside <ul><li></li></ul> 
+ol_ :: [Tag] -> Tag
+ol_ =
+  Tag . element_ "ol" . concatMap (element_ "li" . getTagString)
+
+-- wrap code block inside <pre></pre>
+code_ :: String -> Tag
+code_ = Tag . element_ "pre" . escape
+
+append_ :: Tag -> Tag -> Tag
+append_ c1 c2 =
+  Tag (getTagString c1 <> getTagString c2)
 
 -- print/return the contents of a Tag
 render :: Html -> String
