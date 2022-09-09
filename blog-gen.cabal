@@ -25,9 +25,10 @@ source-repository head
 
 library
   exposed-modules:
+      Convert
       HTMLPrinter
+      Markup
       PatternMatchTests
-      Structure
   other-modules:
       Paths_blog_gen
   hs-source-dirs:
