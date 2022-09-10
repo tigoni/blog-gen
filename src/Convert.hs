@@ -8,7 +8,7 @@ import qualified HTMLPrinter
 convertStructure :: Markup.Structure -> HTMLPrinter.Tag
 convertStructure structure = 
     case structure of
-        Markup.Heading 1 txt -> HTMLPrinter.h1_ txt
+        Markup.Heading 1 txt -> HTMLPrinter.h_ txt
         Markup.Paragraph p -> HTMLPrinter.p_ p
         Markup.UnOrderedList list -> HTMLPrinter.ul_ $ map HTMLPrinter.p_ list
         Markup.OrderedList list -> HTMLPrinter.ul_ $ map HTMLPrinter.p_ list
