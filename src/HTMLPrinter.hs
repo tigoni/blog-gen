@@ -13,6 +13,8 @@ module HTMLPrinter
   )
 where
 
+import Numeric.Natural
+
 newtype Html = Html String
 
 newtype Tag = Tag String
@@ -29,6 +31,10 @@ p_ = Tag . element_ "p" . escape
 -- wrap a string inside a header tag `<h1>str</h1>`
 h1_ :: String -> Tag
 h1_ = Tag . element_ "h1" . escape
+
+--tag wrapper for string with any header tag
+h_ :: Natural -> String -> Tag
+h_ n = Tag . element_ ("h" <> show n ) . escape
 
 -- wrap un-ordered list items inside <ul><li></li></ul> 
 ul_ :: [Tag] -> Tag
