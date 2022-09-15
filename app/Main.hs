@@ -1,9 +1,51 @@
 module Main where
 
 import HTMLPrinter 
+import Convert (convert)
+import Markup
+import System.Directory (doesFileExist)
+import System.Environment (getArgs)
 
 main :: IO ()
-main = putStrLn  (render html)
-  
-html :: Html
-html = html_ "Static Blog Test" ((h1_ "Heading" <> p_ "paragraph #1") <> p_ "paragraph #2" <> code_ "import Prelude hiding (map)")
+main = do
+  args <- getArgs
+  case args of
+    -- No program arguments: reading from stdin and writing to stdout
+    [] -> do
+      content <- getContents
+      putStrLn (process "Empty title" content)
+
+    -- With input and output file paths as program arguments
+    [input, output] -> do
+      content <- readFile input
+      exists <- doesFileExist output
+      let
+        writeResult = writeFile output (process input content)
+      if exists
+        then whenIO confirm writeResult
+        else writeResult
+
+    -- Any other kind of program arguments
+    _ ->
+      putStrLn "Usage: runghc Main.hs [-- <input-file> <output-file>]"
+
+process :: HTMLPrinter.Title -> String -> String
+process title = HTMLPrinter.render . convert title . Markup.parse
+
+confirm :: IO Bool
+confirm = do
+  putStrLn "Are you sure? (y/n)"
+  answer <- getLine
+  case answer of
+    "y" -> pure True
+    "n" -> pure False
+    _ -> do
+      putStrLn "Invalid response. use y or n"
+      confirm
+
+whenIO :: IO Bool -> IO () -> IO ()
+whenIO cond action = do
+  result <- cond
+  if result
+    then action
+    else pure ()
