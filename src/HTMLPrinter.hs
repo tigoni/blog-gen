@@ -91,3 +91,5 @@ instance Semigroup Tag where
   (<>) elem1 elem2 = 
     Tag (getTagString elem1 <> getTagString elem2)
 
+instance Monoid Tag where 
+  mempty = Tag ""
