@@ -1,5 +1,4 @@
-cabal-version: 1.12
-
+cabal-version: 2.4
 -- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
@@ -12,12 +11,15 @@ bug-reports:    https://github.com/tigoni/blog-gen/issues
 author:         Kelly N. Muhindi
 maintainer:     kmuhindi@protonmail.ch
 copyright:      2022 Kelly Muhindi
-license:        BSD3
-license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
     ChangeLog.md
+
+common common-settings
+  default-language: Haskell2010
+  ghc-options:
+    -Wall
 
 source-repository head
   type: git
