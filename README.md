@@ -1,10 +1,10 @@
 # blog-gen
 
 #### Summary
-Emurgo Academy - Cardano Associate Program
-Module: Haskell Programming
-Project: A static blog page generator 
-Author: Kelly Muhindi
+<p>Emurgo Academy - Cardano Associate Program<br>
+Module: Haskell Programming<br>
+Project: A static blog page generator<br> 
+Author: Kelly Muhindi<br></p>
 
 #### Description
 A simple static blog generator written in Haskell. 
